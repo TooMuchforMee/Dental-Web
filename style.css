@@ -448,6 +448,18 @@ option {
     margin-inline: auto;
 }
 
+/* Glassmorphism background for services section - Background changed to white */
+.services {
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.services .container {
+    position: relative;
+    z-index: 2;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -455,12 +467,17 @@ option {
 }
 
 .service-card {
-    background: #ffffff;
+    background: rgba(248, 250, 252, 0.85); /* Darker off-white to contrast against white background */
     padding: 2.5rem;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    border-radius: 20px;
+    box-shadow:
+        0 8px 32px rgba(13, 148, 136, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition: var(--transition-slow);
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     position: relative;
     overflow: hidden;
 }
@@ -470,34 +487,79 @@ option {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--color-secondary);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-slow);
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.6), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    border-radius: 20px;
+    pointer-events: none;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: scale(1.03) translateY(-6px);
+    box-shadow:
+        0 20px 48px rgba(13, 148, 136, 0.16),
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-color: rgba(13, 148, 136, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.72);
 }
 
 .service-card:hover::before {
-    transform: scaleX(1);
+    opacity: 1;
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card h3 {
+    color: #1a2744;
+    font-weight: 700;
+}
+
+.service-card p {
+    color: rgba(51, 65, 85, 0.82);
 }
 
 .icon-wrapper {
-    font-size: 2.5rem;
-    width: 60px;
-    height: 60px;
+    font-size: 2rem;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-bg-light);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     margin-bottom: 1.5rem;
     color: var(--color-secondary);
+    box-shadow:
+        0 4px 16px rgba(13, 148, 136, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: var(--transition-fast);
+}
+
+.service-card:hover .icon-wrapper {
+    background: rgba(13, 148, 136, 0.12);
+    box-shadow:
+        0 6px 20px rgba(13, 148, 136, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: scale(1.08);
 }
 
 /* About */
@@ -539,68 +601,103 @@ option {
     letter-spacing: 1px;
 }
 
-/* Achievements */
+/* Achievements — Glassmorphism Layer */
 .achievements {
     padding: 20px 0 100px 0;
     margin-top: -60px;
-    /* Overlap with the above section */
     position: relative;
     z-index: 10;
+    /* White backdrop to match rest of site */
+    background-color: #ffffff;
 }
 
 .achievements-card {
-    background: #f5f9ff;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+    background: rgba(248, 250, 252, 0.7); /* Slightly darker to contrast against white background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 20px 60px rgba(13, 148, 136, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
     padding: 3.5rem 2rem;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 2rem;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.achievements-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    pointer-events: none;
 }
 
 .achievement-item {
     flex: 1;
     min-width: 150px;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(13, 148, 136, 0.05);
+}
+
+.achievement-item:hover {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 24px rgba(13, 148, 136, 0.14);
+    transform: translateY(-4px);
+}
+
+/* Divider between stat items */
+.achievement-item + .achievement-item {
+    border-left: 1px solid rgba(13, 148, 136, 0.12);
 }
 
 .achievement-icon {
-    color: var(--color-primary);
-    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
+    opacity: 0.9;
 }
 
 .achievement-number {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1.2;
     margin-bottom: 0.5rem;
     animation: float 3s ease-in-out infinite;
 }
 
 .achievement-label {
-    font-size: 0.95rem;
-    color: var(--color-text-main);
+    font-size: 0.9rem;
+    color: rgba(51, 65, 85, 0.75);
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 @keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-3px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
 }
 
 /* Location / Map */
