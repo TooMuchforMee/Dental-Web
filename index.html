@@ -110,7 +110,7 @@
             </div>
             <div class="about-content fade-in-up delay-1">
                 <span class="subtitle">Meet The Expert</span>
-                <h2>Dr. Reena Joshi</h2>
+                <h2>Dr. Sarah Jenkins</h2>
                 <p class="lead">Dedicated to the art and science of exquisite dentistry.</p>
                 <p>With over 15 years of prestigious experience, Dr. Jenkins combines profound anatomical knowledge with an artist's touch. A graduate of Harvard School of Dental Medicine, her approach is deeply rooted in patient comfort and meticulous, long-lasting results.</p>
                 <p>She believes that a beautiful smile is a cornerstone of personal confidence and overall health.</p>
@@ -173,27 +173,59 @@
 
     <!-- Testimonials Section -->
     <section class="testimonials section spotlight-section" id="testimonials">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <span class="subtitle">Patient Stories</span>
-                <h2>Words of Appreciation</h2>
+        <div class="container testimonial-container">
+            <div class="testimonial-left">
+                <span class="badge">⭐ Trusted by patients</span>
+                <h2 class="bold-heading">Loved by our patients</h2>
+                <p class="subtext">Don't just take our word for it. See what our patients say about their smile transformation and experience.</p>
+                <div class="slider-indicators" id="t-indicators">
+                    <div class="indicator active"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                </div>
             </div>
             
-            <div class="testimonial-grid">
-                <div class="testimonial-card fade-in-up">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="quote">"An absolute revelation. The clinic feels like a high-end spa, and Dr. Jenkins' attention to detail gave me the flawless smile I've always dreamed of."</p>
-                    <div class="author">- Michael T.</div>
-                </div>
-                <div class="testimonial-card fade-in-up delay-1">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="quote">"I've always had immense anxiety about the dentist. The team here completely completely changed my perspective. Painless, professional, and profound results."</p>
-                    <div class="author">- Elena R.</div>
-                </div>
-                <div class="testimonial-card fade-in-up delay-2">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="quote">"The implant procedure was seamless. Their use of modern technology is apparent in every step. I cannot recommend Lumina Dental highly enough."</p>
-                    <div class="author">- David K.</div>
+            <div class="testimonial-right">
+                <div class="testimonial-carousel" id="t-carousel">
+                    <!-- Card 1 -->
+                    <div class="t-card">
+                        <div class="t-bg-quote">"</div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="t-text">"An absolute revelation. The clinic feels like a high-end spa, and Dr. Jenkins' attention to detail gave me the flawless smile I've always dreamed of."</p>
+                        <div class="t-author-box">
+                            <div class="t-avatar bg-avatar-1">MT</div>
+                            <div class="t-author-info">
+                                <h4>Michael T.</h4>
+                                <span>Cosmetic Patient</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="t-card">
+                        <div class="t-bg-quote">"</div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="t-text">"I've always had immense anxiety about the dentist. The team here completely changed my perspective. Painless, professional, and profound results."</p>
+                        <div class="t-author-box">
+                            <div class="t-avatar bg-avatar-2">ER</div>
+                            <div class="t-author-info">
+                                <h4>Elena R.</h4>
+                                <span>Dental Implant Patient</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="t-card">
+                        <div class="t-bg-quote">"</div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="t-text">"The implant procedure was seamless. Their use of modern technology is apparent in every step. I cannot recommend Lumina Dental highly enough."</p>
+                        <div class="t-author-box">
+                            <div class="t-avatar bg-avatar-3">DK</div>
+                            <div class="t-author-info">
+                                <h4>David K.</h4>
+                                <span>Orthodontics Patient</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -295,6 +327,10 @@
             <path d="M12.031 2C6.494 2 2 6.493 2 12.03c0 1.768.461 3.447 1.336 4.93L2.003 22l5.187-1.353C8.614 21.517 10.279 22 12.031 22 17.568 22 22 17.507 22 11.97 22 6.434 17.568 2 12.031 2zm0 18.314c-1.503 0-2.973-.404-4.26-1.168l-.305-.182-3.161.825.84-3.078-.2-.317A8.293 8.293 0 013.725 12.03c0-4.57 3.718-8.288 8.306-8.288 4.588 0 8.306 3.718 8.306 8.288 0 4.57-3.718 8.288-8.306 8.288z" />
         </svg>
     </a>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script src="script.js"></script>
 </body>
