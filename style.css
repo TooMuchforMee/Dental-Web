@@ -722,46 +722,182 @@ option {
 }
 
 /* Testimonials */
-.testimonial-grid {
+.testimonial-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
-.testimonial-card {
-    background: var(--color-bg-light);
-    padding: 2.5rem;
-    border-radius: var(--radius-md);
-    position: relative;
+.testimonial-left {
+    max-width: 500px;
+    opacity: 0; /* GSAP will animate this */
+    transform: translateX(-30px); /* Initial position for animation */
+}
+
+.testimonial-left .badge {
+    display: inline-block;
+    background: rgba(13, 148, 136, 0.1);
+    color: var(--color-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.bold-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    color: var(--color-text-heading);
+}
+
+.testimonial-left .subtext {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.slider-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 30px;
+    height: 4px;
+    background: rgba(15, 23, 42, 0.1);
+    border-radius: 2px;
     transition: var(--transition-fast);
 }
 
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    background: #ffffff;
-    box-shadow: var(--shadow-md);
+.indicator.active {
+    width: 60px;
+    background: var(--color-secondary);
 }
 
-.stars {
+.testimonial-right {
+    position: relative;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.testimonial-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.t-card {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%) translateX(50px) scale(0.95);
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+/* Optional glassmorphism blur effect */
+.t-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: var(--color-secondary);
+    filter: blur(80px);
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.t-bg-quote {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 8rem;
+    font-family: var(--font-heading);
+    color: rgba(13, 148, 136, 0.05);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.t-stars {
     color: var(--color-accent);
     font-size: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-.quote {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--color-text-main);
     margin-bottom: 1.5rem;
-    line-height: 1.8;
+    letter-spacing: 2px;
 }
 
-.author {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.t-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-heading);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.t-author-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.t-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bg-avatar-1 { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.bg-avatar-2 { background: linear-gradient(135deg, #10b981, #059669); }
+.bg-avatar-3 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+.t-author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0;
+}
+
+.t-author-info span {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 900px) {
+    .testimonial-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .testimonial-right {
+        height: 450px;
+    }
+    .t-card {
+        padding: 2rem;
+    }
 }
 
 /* Contact Section */
