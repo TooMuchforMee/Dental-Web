@@ -138,4 +138,148 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(counter => {
         counterObserver.observe(counter);
     });
+
+    // --- Testimonials GSAP Animation ---
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tSection = document.getElementById('testimonials');
+        if (tSection) {
+            // ScrollTrigger for entering the section
+            const tlScroll = gsap.timeline({
+                scrollTrigger: {
+                    trigger: tSection,
+                    start: "top 80%",
+                }
+            });
+
+            tlScroll.to(".testimonial-left", {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+            // Set up the carousel timeline
+            const cards = gsap.utils.toArray('.t-card');
+            const indicators = gsap.utils.toArray('.indicator');
+            let currentIndex = 0;
+            let autoPlayTimer;
+
+            // Initial state: hide all except first
+            gsap.set(cards, { visibility: "hidden", opacity: 0, x: 50, scale: 0.95 });
+            gsap.set(cards[0], { visibility: "visible", opacity: 1, x: 0, scale: 1 });
+
+            function showCard(index) {
+                if (index === currentIndex || cards.length === 0) return;
+
+                const prevCard = cards[currentIndex];
+                const nextCard = cards[index];
+
+                // Animate out previous card (slide left)
+                gsap.to(prevCard, {
+                    x: -50,
+                    opacity: 0,
+                    scale: 0.95,
+                    duration: 0.8,
+                    ease: "power2.inOut",
+                    onComplete: () => gsap.set(prevCard, { visibility: "hidden" })
+                });
+
+                // Prepare next card (start from right)
+                gsap.set(nextCard, { visibility: "visible", x: 50, opacity: 0, scale: 0.95 });
+                
+                // Animate in next card
+                gsap.to(nextCard, {
+                    x: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "power2.inOut",
+                    delay: 0.1
+                });
+
+                if (indicators[currentIndex] && indicators[index]) {
+                    indicators[currentIndex].classList.remove('active');
+                    indicators[index].classList.add('active');
+                }
+
+                currentIndex = index;
+            }
+
+            function nextCard() {
+                let nextIdx = (currentIndex + 1) % cards.length;
+                showCard(nextIdx);
+            }
+
+            function startAutoPlay() {
+                // Clear any existing timer first
+                stopAutoPlay();
+                autoPlayTimer = setInterval(nextCard, 4000);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayTimer) clearInterval(autoPlayTimer);
+            }
+
+            // Start auto play only when section is visible
+            ScrollTrigger.create({
+                trigger: tSection,
+                start: "top 80%",
+                onEnter: startAutoPlay,
+                onEnterBack: startAutoPlay,
+                onLeave: stopAutoPlay,
+                onLeaveBack: stopAutoPlay
+            });
+
+            // Pause on hover
+            const carousel = document.getElementById('t-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopAutoPlay);
+                carousel.addEventListener('mouseleave', startAutoPlay);
+                
+                // Also add touch events for mobile hover-like behavior
+                carousel.addEventListener('touchstart', stopAutoPlay, {passive: true});
+                carousel.addEventListener('touchend', startAutoPlay, {passive: true});
+                
+                // Basic swipe support for mobile
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                carousel.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+                
+                carousel.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, {passive: true});
+                
+                function handleSwipe() {
+                    if (touchEndX < touchStartX - 50) {
+                        // swipe left (next)
+                        stopAutoPlay();
+                        nextCard();
+                        startAutoPlay();
+                    }
+                    if (touchEndX > touchStartX + 50) {
+                        // swipe right (prev)
+                        stopAutoPlay();
+                        let prevIdx = (currentIndex - 1 + cards.length) % cards.length;
+                        showCard(prevIdx);
+                        startAutoPlay();
+                    }
+                }
+            }
+
+            // Clickable indicators
+            indicators.forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    stopAutoPlay();
+                    showCard(i);
+                    startAutoPlay();
+                });
+            });
+        }
+    }
 });
