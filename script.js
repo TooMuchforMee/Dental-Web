@@ -1,5 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Dynamically Render Services ---
+    const servicesList = [
+        { title: "Dental Checkup & X-Rays", icon: "&#128300;" },
+        { title: "Orthodontics (Braces)", icon: "&#128522;" },
+        { title: "Dental Implants", icon: "&#129463;" },
+        { title: "Crowns and Bridges", icon: "&#128142;" },
+        { title: "Root Canal Treatment (RCT)", icon: "&#128300;" },
+        { title: "Teeth Whitening & Bleaching", icon: "&#10024;" },
+        { title: "Teeth Cleaning & Polishing", icon: "&#129524;" },
+        { title: "Smile Designing", icon: "&#128522;" },
+        { title: "Kids Dentistry", icon: "&#128102;" },
+        { title: "Wisdom Teeth Extraction", icon: "&#129463;" },
+        { title: "Tooth Colored Fillings", icon: "&#127912;" },
+        { title: "Aligners and Gum Surgery", icon: "&#128137;" },
+        { title: "Full Mouth Rehabilitation", icon: "&#129463;" },
+        { title: "Facial Aesthetic", icon: "&#128135;" },
+        { title: "Cosmetic & Laser Dental Treatment", icon: "&#10024;" },
+        { title: "Dental Veneers and Laminates", icon: "&#128142;" }
+    ];
+
+    const servicesGrid = document.getElementById('services-grid');
+    if (servicesGrid) {
+        servicesList.forEach((service, index) => {
+            let delayClass = "";
+            if (index % 4 === 1) delayClass = "delay-1";
+            else if (index % 4 === 2) delayClass = "delay-2";
+            else if (index % 4 === 3) delayClass = "delay-1";
+            
+            const cardHtml = `
+                <div class="service-card fade-in-up ${delayClass}">
+                    <div class="icon-wrapper">${service.icon}</div>
+                    <h3>${service.title}</h3>
+                </div>
+            `;
+            servicesGrid.insertAdjacentHTML('beforeend', cardHtml);
+        });
+    }
+
     // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
