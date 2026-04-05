@@ -12,8 +12,10 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Top Section Wrapper for unified background -->
+    <div class="top-section">
+        <!-- Navigation -->
+        <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">Lumina<span>Dental</span></a>
             <ul class="nav-links">
@@ -32,7 +34,19 @@
 
     <!-- Hero Section -->
     <header class="hero" id="home">
-        <div class="container hero-container">
+        <!-- Blurred color blobs for premium feel -->
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        
+        <!-- Full section glassmorphism atmosphere -->
+        <div class="hero-glass-bg"></div>
+
+        <div class="container">
+            <div class="hero-glass-panel">
+                <div class="hero-container">
             <div class="hero-content fade-in-up">
                 <h1 class="hover-gradient-wrapper" id="heroHeading">
                     <span class="text-default">Crafting Exceptional <span class="highlight">Smiles</span> Every Day.</span>
@@ -40,17 +54,37 @@
                 </h1>
                 <p>Experience world-class dental care in a serene, luxurious environment designed for your comfort and well-being.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+                    <a href="#contact" class="schedule-btn">
+                       <span class="left"></span>
+                       Schedule a Visit
+                       <span class="right"></span>
+                    </a>
                     <a href="#services" class="btn btn-outline">Our Services</a>
                 </div>
             </div>
-            <div class="hero-image fade-in-up delay-1">
-                <div class="image-wrapper">
-                    <img src="assets/hero_dental_clinic_1773423588240.png" alt="Luxurious Lumina Dental Clinic Interior">
+            <div class="hero-image-collage fade-in-up delay-1">
+                <div class="collage-grid">
+                    <img src="assets/patient_smiling_1775326363262.png" alt="Happy Patient" class="collage-img img-tl">
+                    <img src="assets/hero_dental_clinic_1773423588240.png" alt="Clinic Interior" class="collage-img img-tr">
+                    <img src="assets/dental_equipment_1775326341404.png" alt="Dental Equipment" class="collage-img img-bl">
+                    <img src="assets/dentist_working_1775326389559.png" alt="Dentist at Work" class="collage-img img-br">
+                </div>
+                
+                <!-- Floating Glassmorphism Cards -->
+                <div class="glass-card card-top">
+                    <span class="card-icon">😊</span>
+                    <span>100+ Happy Patients</span>
+                </div>
+                <div class="glass-card card-bottom">
+                    <span class="card-icon">🛡️</span>
+                    <span>100% Trusted Care</span>
                 </div>
             </div>
-        </div>
+                </div> <!-- /hero-container -->
+            </div> <!-- /hero-glass-panel -->
+        </div> <!-- /container -->
     </header>
+    </div> <!-- /top-section -->
 
     <!-- Services Section -->
     <section class="services section spotlight-section" id="services">
