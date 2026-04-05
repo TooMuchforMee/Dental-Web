@@ -1,341 +1,1546 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Dental | Premium Care</title>
-    <meta name="description" content="Experience premium dental care at Lumina Dental. Book your appointment today.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* --- 1. DESIGN TOKENS --- */
+:root {
+    /* Color Palette */
+    --color-primary: #0f172a;
+    /* Deep Navy */
+    --color-secondary: #0d9488;
+    /* Elegant Teal */
+    --color-accent: #d4af37;
+    /* Subtle Gold */
 
-    <!-- Top Section Wrapper for unified background -->
-    <div class="top-section">
-        <!-- Navigation -->
-        <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Lumina<span>Dental</span></a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact" class="btn btn-primary btn-sm">Book Appointment</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+    --color-bg-main: #ffffff;
+    --color-bg-light: #f8fafc;
+    --color-bg-dark: #020617;
 
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <!-- Blurred color blobs for premium feel -->
-        <div class="hero-bg-blobs">
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
-            <div class="blob blob-3"></div>
-        </div>
-        
-        <!-- Full section glassmorphism atmosphere -->
-        <div class="hero-glass-bg"></div>
+    --color-text-main: #334155;
+    --color-text-heading: #0f172a;
+    --color-text-muted: #64748b;
+    --color-text-light: #f1f5f9;
+    --color-text-light-muted: #cbd5e1;
 
-        <div class="container">
-            <div class="hero-glass-panel">
-                <div class="hero-container">
-            <div class="hero-content fade-in-up">
-                <h1 class="hover-gradient-wrapper" id="heroHeading">
-                    <span class="text-default">Crafting Exceptional <span class="highlight">Smiles</span> Every Day.</span>
-                    <span class="text-reveal" aria-hidden="true">Crafting Exceptional <span class="highlight">Smiles</span> Every Day.</span>
-                </h1>
-                <p>Experience world-class dental care in a serene, luxurious environment designed for your comfort and well-being.</p>
-                <div class="hero-btns">
-                    <a href="#contact" class="schedule-btn">
-                       <span class="left"></span>
-                       Schedule a Visit
-                       <span class="right"></span>
-                    </a>
-                    <a href="#services" class="btn btn-outline">Our Services</a>
-                </div>
-            </div>
-            <div class="hero-image-collage fade-in-up delay-1">
-                <div class="collage-grid">
-                    <img src="assets/patient_smiling_1775326363262.png" alt="Happy Patient" class="collage-img img-tl">
-                    <img src="assets/hero_dental_clinic_1773423588240.png" alt="Clinic Interior" class="collage-img img-tr">
-                    <img src="assets/dental_equipment_1775326341404.png" alt="Dental Equipment" class="collage-img img-bl">
-                    <img src="assets/dentist_working_1775326389559.png" alt="Dentist at Work" class="collage-img img-br">
-                </div>
-                
-                <!-- Floating Glassmorphism Cards -->
-                <div class="glass-card card-top">
-                    <span class="card-icon">😊</span>
-                    <span>100+ Happy Patients</span>
-                </div>
-                <div class="glass-card card-bottom">
-                    <span class="card-icon">🛡️</span>
-                    <span>100% Trusted Care</span>
-                </div>
-            </div>
-                </div> <!-- /hero-container -->
-            </div> <!-- /hero-glass-panel -->
-        </div> <!-- /container -->
-    </header>
-    </div> <!-- /top-section -->
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
 
-    <!-- Services Section -->
-    <section class="services section spotlight-section" id="services">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <span class="subtitle">Our Expertise</span>
-                <h2>Comprehensive Dental Services</h2>
-                <p>Tailored treatments using state-of-the-art technology to ensure your optimal oral health.</p>
-            </div>
-            
-            <div class="services-grid" id="services-grid">
-            </div>
-        </div>
-    </section>
+    /* Layout */
+    --max-width: 1280px;
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.3s ease;
+    --radius-sm: 4px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
 
-    <!-- About Section -->
-    <section class="about section bg-light spotlight-section" id="about">
-        <div class="container about-container">
-            <div class="about-image fade-in-up">
-                <div class="image-wrapper">
-                    <img src="assets/doctor_portrait_1773423646272.png" alt="Dr. Sarah Jenkins - Lead Dentist">
-                </div>
-                <div class="experience-badge">
-                    <span class="number">15+</span>
-                    <span class="text">Years of<br>Excellence</span>
-                </div>
-            </div>
-            <div class="about-content fade-in-up delay-1">
-                <span class="subtitle">Meet The Expert</span>
-                <h2>Dr. Sarah Jenkins</h2>
-                <p class="lead">Dedicated to the art and science of exquisite dentistry.</p>
-                <p>With over 15 years of prestigious experience, Dr. Jenkins combines profound anatomical knowledge with an artist's touch. A graduate of Harvard School of Dental Medicine, her approach is deeply rooted in patient comfort and meticulous, long-lasting results.</p>
-                <p>She believes that a beautiful smile is a cornerstone of personal confidence and overall health.</p>
-                <a href="#contact" class="btn btn-outline mt-3">Book Consultation</a>
-            </div>
-        </div>
-    </section>
+    /* Shadows */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
 
-    <!-- Achievements Section -->
-    <section class="achievements section" id="achievements">
-        <div class="container">
-            <div class="achievements-card fade-in-up">
-                <div class="achievement-item">
-                    <div class="achievement-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="achievement-number counter" data-target="1000">0</div>
-                    <div class="achievement-label">Happy Patients</div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="achievement-number counter" data-target="9">0</div>
-                    <div class="achievement-label">Doctor and Staff</div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-                    </div>
-                    <div class="achievement-number counter" data-target="5">0</div>
-                    <div class="achievement-label">Years Of Experience</div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </div>
-                    <div class="achievement-number counter" data-target="1000">0</div>
-                    <div class="achievement-label">Treated Patients</div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* --- 2. RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Map location Section -->
-    <section class="location section spotlight-section" id="location">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <span class="subtitle">Find Us</span>
-                <h2>Our Clinic Location</h2>
-                <p>Conveniently located at Orbit Mall in Indore. We look forward to welcoming you.</p>
-            </div>
-            
-            <div class="map-container fade-in-up delay-1">
-                <!-- Google Maps Embed for Orbit Mall, Indore -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.544252655078!2d75.8893963!3d22.745163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd567b5e43ab%3A0xc3c942ee4edbe1ae!2sOrbit%20Mall!5e0!3m2!1sen!2sin!4v1710500000000!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lumina Dental Location Map"></iframe>
-            </div>
-        </div>
-    </section>
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
 
-    <!-- Testimonials Section -->
-    <section class="testimonials section spotlight-section" id="testimonials">
-        <div class="container testimonial-container">
-            <div class="testimonial-left">
-                <span class="badge">⭐ Trusted by patients</span>
-                <h2 class="bold-heading">Loved by our patients</h2>
-                <p class="subtext">Don't just take our word for it. See what our patients say about their smile transformation and experience.</p>
-                <div class="slider-indicators" id="t-indicators">
-                    <div class="indicator active"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                </div>
-            </div>
-            
-            <div class="testimonial-right">
-                <div class="testimonial-carousel" id="t-carousel">
-                    <!-- Card 1 -->
-                    <div class="t-card">
-                        <div class="t-bg-quote">"</div>
-                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="t-text">"An absolute revelation. The clinic feels like a high-end spa, and Dr. Jenkins' attention to detail gave me the flawless smile I've always dreamed of."</p>
-                        <div class="t-author-box">
-                            <div class="t-avatar bg-avatar-1">MT</div>
-                            <div class="t-author-info">
-                                <h4>Michael T.</h4>
-                                <span>Cosmetic Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="t-card">
-                        <div class="t-bg-quote">"</div>
-                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="t-text">"I've always had immense anxiety about the dentist. The team here completely changed my perspective. Painless, professional, and profound results."</p>
-                        <div class="t-author-box">
-                            <div class="t-avatar bg-avatar-2">ER</div>
-                            <div class="t-author-info">
-                                <h4>Elena R.</h4>
-                                <span>Dental Implant Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="t-card">
-                        <div class="t-bg-quote">"</div>
-                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="t-text">"The implant procedure was seamless. Their use of modern technology is apparent in every step. I cannot recommend Lumina Dental highly enough."</p>
-                        <div class="t-author-box">
-                            <div class="t-avatar bg-avatar-3">DK</div>
-                            <div class="t-author-info">
-                                <h4>David K.</h4>
-                                <span>Orthodontics Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-    <!-- Appointment/Contact Section -->
-    <section class="contact section contact-section-compact spotlight-section bg-dark" id="contact">
-        <div class="container contact-container">
-            <div class="contact-info fade-in-up">
-                <span class="subtitle text-light">Get In Touch</span>
-                <h2 class="text-white">Reserve Your Appointment</h2>
-                <p class="text-light-muted">Take the first step towards a pristine, healthy smile. Fill out the form, and our concierge will contact you to confirm your ideal time.</p>
-                
-                <div class="info-list">
-                    <div class="info-item">
-                        <div class="info-icon">&#128205;</div>
-                        <div>
-                            <h4>Visit Us</h4>
-                            <p>Orbit Mall, AB Rd<br>Indore, MP 452010</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">&#128222;</div>
-                        <div>
-                            <h4>Call Us</h4>
-                            <p>(310) 555-0198</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">&#9993;</div>
-                        <div>
-                            <h4>Email Us</h4>
-                            <p>concierge@luminadental.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form fade-in-up delay-1">
-                <form id="bookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" required placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" required placeholder="(123) 456-7890">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Interested Service</label>
-                        <select id="service" required>
-                            <option value="" disabled selected>Select a Service</option>
-                            <option value="consultation">General Consultation</option>
-                            <option value="cosmetic">Cosmetic Dentistry</option>
-                            <option value="implants">Dental Implants</option>
-                            <option value="orthodontics">Orthodontics (Invisalign)</option>
-                            <option value="emergency">Emergency Care</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Notes (Optional)</label>
-                        <textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Request Appointment</button>
-                </form>
-            </div>
-        </div>
-    </section>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text-heading);
+    line-height: 1.2;
+    font-weight: 600;
+}
 
-    <!-- Footer -->
-    <footer class="footer spotlight-section">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> Lumina Dental. All rights reserved.</p>
-                <div class="footer-socials">
-                    <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5 2.8 12 3 10c1 .2 2 .2 3 0C3 7 5 3 5 3s1.5 1.5 3 2c1.5-2.5 5-2.5 6 0 1.5-.5 3-1.5 3-1.5z"></path></svg></a>
-                    <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                    <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                </div>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/1234567890" class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z" />
-            <path d="M12.031 2C6.494 2 2 6.493 2 12.03c0 1.768.461 3.447 1.336 4.93L2.003 22l5.187-1.353C8.614 21.517 10.279 22 12.031 22 17.568 22 22 17.507 22 11.97 22 6.434 17.568 2 12.031 2zm0 18.314c-1.503 0-2.973-.404-4.26-1.168l-.305-.182-3.161.825.84-3.078-.2-.317A8.293 8.293 0 013.725 12.03c0-4.57 3.718-8.288 8.306-8.288 4.588 0 8.306 3.718 8.306 8.288 0 4.57-3.718 8.288-8.306 8.288z" />
-        </svg>
-    </a>
+ul {
+    list-style: none;
+}
 
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.container {
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.bg-light {
+    background-color: var(--color-bg-light);
+}
+
+.bg-dark {
+    background-color: var(--color-bg-dark);
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.text-light {
+    color: var(--color-text-light) !important;
+}
+
+.text-light-muted {
+    color: var(--color-text-light-muted) !important;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+/* --- 3. TYPOGRAPHY --- */
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.subtitle {
+    display: inline-block;
+    color: var(--color-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- 4. COMPONENTS --- */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: var(--transition-fast);
+}
+
+.btn-sm {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Custom Animated Schedule Button */
+.schedule-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none !important;
+}
+
+/* Base background */
+.schedule-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-primary);
+    /* Dark Navy */
+    z-index: -3;
+    border-radius: inherit;
+}
+
+/* Sliding Overlays */
+.schedule-btn span.left,
+.schedule-btn span.right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    /* Teal */
+    z-index: -2;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.schedule-btn span.left {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.schedule-btn span.right {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.schedule-btn:hover span.left,
+.schedule-btn:hover span.right {
+    transform: translateX(0);
+}
+
+/* Bubble Effect */
+.schedule-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    z-index: -1;
+    pointer-events: none;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.schedule-btn:hover::before {
+    transform: translate(-50%, -50%) scale(12);
+    opacity: 0;
+}
+
+/* Form Elements */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+option {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* --- 5. LAYOUT BLOCKS --- */
+
+/* Top Section (Unified Background) */
+.top-section {
+    position: relative;
+    background: linear-gradient(135deg, #e6f7ff 0%, #fdf6ec 50%, #e0fdf4 100%);
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* very subtle glass background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: none;
+    /* removed hard border */
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+/* Subtle premium divider line fading at edges */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.05) 20%, 
+        rgba(0, 0, 0, 0.12) 50%, 
+        rgba(0, 0, 0, 0.05) 80%, 
+        rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+}
+
+.navbar.scrolled {
+    padding: 0.75rem 0;
+    /* Optional: keep a very soft shadow on scroll to distinguish it when moving over other sections */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.logo span {
+    color: var(--color-secondary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a:not(.btn) {
+    color: var(--color-text-main);
+}
+
+.nav-links a:not(.btn):hover {
+    color: var(--color-secondary);
+}
+
+.nav-links a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-secondary);
+    transition: var(--transition-fast);
+}
+
+.nav-links a:not(.btn):hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    background-color: var(--color-primary);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.hero-bg-blobs {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    /* 100px blur for premium UI feel */
+    opacity: 0.6;
+}
+
+.blob-1 {
+    top: -5%;
+    left: -5%;
+    width: 600px;
+    height: 600px;
+    background: rgba(13, 148, 136, 0.2);
+    /* soft teal */
+    animation: float 8s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 800px;
+    height: 800px;
+    background: rgba(59, 130, 246, 0.15);
+    /* light blue */
+    animation: float 10s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+    top: 30%;
+    left: 25%;
+    width: 700px;
+    height: 700px;
+    background: rgba(245, 245, 230, 0.4);
+    /* very light beige */
+    animation: float 12s ease-in-out infinite alternate;
+}
+
+/* Full section glassmorphism atmosphere */
+.hero-glass-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* Behind content fully */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    pointer-events: none;
+    /* optional subtle noise can be added with an image or just keeping the pure clean gradients */
+}
+
+/* Container structure (glass styles removed, padding kept) */
+.hero-glass-panel {
+    position: relative;
+    z-index: 10;
+    padding: 4rem;
+}
+
+@media (max-width: 992px) {
+    .hero-glass-panel {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-glass-panel {
+        padding: 1.5rem;
+    }
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Custom Cursor Hover Effect for Hero Heading */
+.hover-gradient-wrapper {
+    position: relative;
+    display: block;
+    cursor: default;
+}
+
+.hover-gradient-wrapper .text-default {
+    display: block;
+    color: #94a3b8;
+    transition: opacity 0.5s ease;
+}
+
+.hover-gradient-wrapper .text-default .highlight {
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+.hover-gradient-wrapper .text-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: radial-gradient(circle 250px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            #3b82f6 0%,
+            #a855f7 40%,
+            #f97316 80%,
+            transparent 100%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.hover-gradient-wrapper .text-reveal .highlight {
+    font-style: italic;
+}
+
+.hover-gradient-wrapper:hover .text-default {
+    opacity: 0.1;
+}
+
+.hover-gradient-wrapper:hover .text-reveal {
+    opacity: 1;
+}
+
+.hero-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin: 1.5rem 0 2.5rem;
+    max-width: 500px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Hero Image Collage */
+.hero-image-collage {
+    position: relative;
+    width: 100%;
+}
+
+.collage-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 240px 30px 150px;
+    /* Perfectly aligns tall and wide elements without relying on margins */
+    gap: 24px;
+    align-items: stretch;
+}
+
+.collage-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* soft shadow */
+    position: relative;
+    z-index: 1;
+}
+
+.collage-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    /* smooth zoom and shadow increase on hover */
+    z-index: 2;
+}
+
+.img-tl {
+    grid-column: 1;
+    grid-row: 1;
+    /* Normal rectangle */
+}
+
+.img-tr {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    /* Taller, spans 2 rows */
+}
+
+.img-bl {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    /* Wide rectangle (span over smaller lower rows) */
+}
+
+.img-br {
+    grid-column: 2;
+    grid-row: 3;
+    /* Small rectangle */
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    /* soft shadow */
+    z-index: 10;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.card-icon {
+    font-size: 1.25rem;
+}
+
+.card-top {
+    top: 30px;
+    left: -20px;
+    /* top-left positioning */
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-bottom {
+    bottom: 40px;
+    left: -20px;
+    /* bottom-left positioning */
+    animation: float 4s ease-in-out infinite reverse;
+}
+
+@media (max-width: 768px) {
+    .collage-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 16px;
+    }
+
+    .img-tl {
+        grid-column: 1;
+        grid-row: 1;
+        aspect-ratio: 4/3;
+    }
+
+    .img-tr {
+        grid-column: 2;
+        grid-row: 1;
+        aspect-ratio: 3/4;
+    }
+
+    .img-bl {
+        grid-column: 1;
+        grid-row: 2;
+        aspect-ratio: 4/3;
+    }
+
+    .img-br {
+        grid-column: 2;
+        grid-row: 2;
+        aspect-ratio: 3/4;
+    }
+
+    .card-top {
+        left: -10px;
+        top: 20px;
+    }
+
+    .card-bottom {
+        left: -10px;
+        bottom: 20px;
+    }
+}
+
+/* Services */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+/* Glassmorphism background for services section - Background changed to white */
+.services {
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.services .container {
+    position: relative;
+    z-index: 2;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.service-card {
+    background: rgba(248, 250, 252, 0.85);
+    /* Darker off-white to contrast against white background */
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow:
+        0 8px 32px rgba(13, 148, 136, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 160px;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.6), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.service-card:hover {
+    transform: scale(1.05) translateY(-6px);
+    box-shadow:
+        0 20px 48px rgba(13, 148, 136, 0.16),
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-color: rgba(13, 148, 136, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card h3 {
+    color: #1a2744;
+    font-weight: 700;
+    margin-bottom: 0;
+    font-size: 1.15rem;
+}
+
+.icon-wrapper {
+    font-size: 1.75rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+    color: var(--color-secondary);
+    box-shadow:
+        0 4px 16px rgba(13, 148, 136, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: var(--transition-fast);
+}
+
+.service-card:hover .icon-wrapper {
+    background: rgba(13, 148, 136, 0.12);
+    box-shadow:
+        0 6px 20px rgba(13, 148, 136, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: scale(1.08);
+}
+
+/* About */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background: var(--color-primary);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.experience-badge .number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-accent);
+}
+
+.experience-badge .text {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Achievements — Glassmorphism Layer */
+.achievements {
+    padding: 20px 0 100px 0;
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+    /* White backdrop to match rest of site */
+    background-color: #ffffff;
+}
+
+.achievements-card {
+    background: rgba(248, 250, 252, 0.7);
+    /* Slightly darker to contrast against white background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 20px 60px rgba(13, 148, 136, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    padding: 3.5rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievements-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    pointer-events: none;
+}
+
+.achievement-item {
+    flex: 1;
+    min-width: 150px;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(13, 148, 136, 0.05);
+}
+
+.achievement-item:hover {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 24px rgba(13, 148, 136, 0.14);
+    transform: translateY(-4px);
+}
+
+/* Divider between stat items */
+.achievement-item+.achievement-item {
+    border-left: 1px solid rgba(13, 148, 136, 0.12);
+}
+
+.achievement-icon {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    opacity: 0.9;
+}
+
+.achievement-number {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.achievement-label {
+    font-size: 0.9rem;
+    color: rgba(51, 65, 85, 0.75);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Location / Map */
+.map-container {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: var(--color-bg-light);
+    transform: translateY(0);
+    transition: var(--transition-slow);
+}
+
+.map-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+}
+
+/* Testimonials */
+.testimonial-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.testimonial-left {
+    max-width: 500px;
+    opacity: 0;
+    /* GSAP will animate this */
+    transform: translateX(-30px);
+    /* Initial position for animation */
+}
+
+.testimonial-left .badge {
+    display: inline-block;
+    background: rgba(13, 148, 136, 0.1);
+    color: var(--color-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.bold-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    color: var(--color-text-heading);
+}
+
+.testimonial-left .subtext {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.slider-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 30px;
+    height: 4px;
+    background: rgba(15, 23, 42, 0.1);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+.indicator.active {
+    width: 60px;
+    background: var(--color-secondary);
+}
+
+.testimonial-right {
+    position: relative;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.testimonial-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.t-card {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%) translateX(50px) scale(0.95);
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+/* Optional glassmorphism blur effect */
+.t-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: var(--color-secondary);
+    filter: blur(80px);
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.t-bg-quote {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 8rem;
+    font-family: var(--font-heading);
+    color: rgba(13, 148, 136, 0.05);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.t-stars {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.t-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-heading);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.t-author-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.t-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bg-avatar-1 {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.bg-avatar-2 {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.bg-avatar-3 {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.t-author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0;
+}
+
+.t-author-info span {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 900px) {
+    .testimonial-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .testimonial-right {
+        height: 450px;
+    }
+
+    .t-card {
+        padding: 2rem;
+    }
+}
+
+/* Contact Section */
+.contact-section-compact {
+    padding: 60px 0;
+    /* Reduced from 100px */
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    /* Reduced from 4rem */
+    align-items: center;
+    /* Vertically align content to center of smaller form */
+}
+
+.info-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Reduced spacing */
+.info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Reduced gap and aligned center for compactness */
+.info-icon {
+    font-size: 1.25rem;
+    width: 40px;
+    height: 40px;
+    /* Smaller icons */
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.info-item h4 {
+    color: white;
+    margin-bottom: 0.15rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+.info-item p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Tighter line height */
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    /* Reduced from 3rem */
+    border-radius: var(--radius-md);
+    /* Slightly smaller radius for compact look */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+    /* Reduced from 1.5rem */
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    padding: 0.75rem;
+    /* Reduced from 1rem */
+}
+
+.contact-form textarea {
+    height: 100px;
+    /* Fixed smaller height instead of rows */
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    background-color: var(--color-bg-dark);
+    /* Main bg color */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem 0;
+    color: var(--color-text-light-muted);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.footer-socials a {
+    color: var(--color-text-light-muted);
+    transition: var(--transition-fast);
+}
+
+.footer-socials a:hover {
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* --- 6. ANIMATIONS & UTILITIES --- */
+
+/* Scroll Reveal Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+/* Spotlight Hover Effect for Sections */
+.spotlight-section {
+    position: relative;
+    overflow: hidden;
+    /* Use solid background color directly on section if needed, pseudo element sits above */
+}
+
+.spotlight-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Vibrant teal/green spotlight clearly visible on light and dark backgrounds */
+    background: radial-gradient(600px circle at var(--mouse-x, -50%) var(--mouse-y, -50%),
+            rgba(43, 166, 164, 0.35),
+            transparent 60%);
+
+    /* Mix-blend-mode removed to allow visibility on white backgrounds */
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .spotlight-section:hover::before {
+        opacity: 1;
+    }
+}
+
+/* Ensure section content stays structurally above the background spotlight */
+.spotlight-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Floating WhatsApp Button */
+.floating-wa {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.floating-wa:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+    background-color: #20b858;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+
+    .hero-container,
+    .about-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-content p {
+        margin-inline: auto;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .about-image {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .experience-badge {
+        right: 0;
+        bottom: -20px;
+    }
+
+    .info-list {
+        align-items: center;
+        text-align: center;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s ease;
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+    }
+}
