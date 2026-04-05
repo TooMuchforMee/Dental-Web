@@ -203,6 +203,86 @@ p:last-child {
     color: #ffffff;
 }
 
+/* Custom Animated Schedule Button */
+.schedule-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none !important;
+}
+
+/* Base background */
+.schedule-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-primary);
+    /* Dark Navy */
+    z-index: -3;
+    border-radius: inherit;
+}
+
+/* Sliding Overlays */
+.schedule-btn span.left,
+.schedule-btn span.right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    /* Teal */
+    z-index: -2;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.schedule-btn span.left {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.schedule-btn span.right {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.schedule-btn:hover span.left,
+.schedule-btn:hover span.right {
+    transform: translateX(0);
+}
+
+/* Bubble Effect */
+.schedule-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    z-index: -1;
+    pointer-events: none;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.schedule-btn:hover::before {
+    transform: translate(-50%, -50%) scale(12);
+    opacity: 0;
+}
+
 /* Form Elements */
 .form-row {
     display: grid;
@@ -251,6 +331,12 @@ option {
 
 /* --- 5. LAYOUT BLOCKS --- */
 
+/* Top Section (Unified Background) */
+.top-section {
+    position: relative;
+    background: linear-gradient(135deg, #e6f7ff 0%, #fdf6ec 50%, #e0fdf4 100%);
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -258,16 +344,38 @@ option {
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.05);
+    /* very subtle glass background */
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: none;
+    /* removed hard border */
     padding: 1rem 0;
     transition: all 0.3s ease;
 }
 
+/* Subtle premium divider line fading at edges */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.05) 20%, 
+        rgba(0, 0, 0, 0.12) 50%, 
+        rgba(0, 0, 0, 0.05) 80%, 
+        rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+}
+
 .navbar.scrolled {
     padding: 0.75rem 0;
-    box-shadow: var(--shadow-sm);
+    /* Optional: keep a very soft shadow on scroll to distinguish it when moving over other sections */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-container {
@@ -341,6 +449,86 @@ option {
     display: flex;
     align-items: center;
     padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.hero-bg-blobs {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    /* 100px blur for premium UI feel */
+    opacity: 0.6;
+}
+
+.blob-1 {
+    top: -5%;
+    left: -5%;
+    width: 600px;
+    height: 600px;
+    background: rgba(13, 148, 136, 0.2);
+    /* soft teal */
+    animation: float 8s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 800px;
+    height: 800px;
+    background: rgba(59, 130, 246, 0.15);
+    /* light blue */
+    animation: float 10s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+    top: 30%;
+    left: 25%;
+    width: 700px;
+    height: 700px;
+    background: rgba(245, 245, 230, 0.4);
+    /* very light beige */
+    animation: float 12s ease-in-out infinite alternate;
+}
+
+/* Full section glassmorphism atmosphere */
+.hero-glass-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* Behind content fully */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    pointer-events: none;
+    /* optional subtle noise can be added with an image or just keeping the pure clean gradients */
+}
+
+/* Container structure (glass styles removed, padding kept) */
+.hero-glass-panel {
+    position: relative;
+    z-index: 10;
+    padding: 4rem;
+}
+
+@media (max-width: 992px) {
+    .hero-glass-panel {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-glass-panel {
+        padding: 1.5rem;
+    }
 }
 
 .hero-container {
@@ -415,29 +603,142 @@ option {
     gap: 1rem;
 }
 
-.image-wrapper {
+/* Hero Image Collage */
+.hero-image-collage {
     position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    width: 100%;
 }
 
-.image-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-lg);
-    pointer-events: none;
+.collage-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 240px 30px 150px;
+    /* Perfectly aligns tall and wide elements without relying on margins */
+    gap: 24px;
+    align-items: stretch;
 }
 
-.hero-image img {
+.collage-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* soft shadow */
+    position: relative;
+    z-index: 1;
+}
+
+.collage-img:hover {
     transform: scale(1.05);
-    transition: transform 1.5s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    /* smooth zoom and shadow increase on hover */
+    z-index: 2;
 }
 
-.hero-image:hover img {
-    transform: scale(1);
+.img-tl {
+    grid-column: 1;
+    grid-row: 1;
+    /* Normal rectangle */
+}
+
+.img-tr {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    /* Taller, spans 2 rows */
+}
+
+.img-bl {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    /* Wide rectangle (span over smaller lower rows) */
+}
+
+.img-br {
+    grid-column: 2;
+    grid-row: 3;
+    /* Small rectangle */
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    /* soft shadow */
+    z-index: 10;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.card-icon {
+    font-size: 1.25rem;
+}
+
+.card-top {
+    top: 30px;
+    left: -20px;
+    /* top-left positioning */
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-bottom {
+    bottom: 40px;
+    left: -20px;
+    /* bottom-left positioning */
+    animation: float 4s ease-in-out infinite reverse;
+}
+
+@media (max-width: 768px) {
+    .collage-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 16px;
+    }
+
+    .img-tl {
+        grid-column: 1;
+        grid-row: 1;
+        aspect-ratio: 4/3;
+    }
+
+    .img-tr {
+        grid-column: 2;
+        grid-row: 1;
+        aspect-ratio: 3/4;
+    }
+
+    .img-bl {
+        grid-column: 1;
+        grid-row: 2;
+        aspect-ratio: 4/3;
+    }
+
+    .img-br {
+        grid-column: 2;
+        grid-row: 2;
+        aspect-ratio: 3/4;
+    }
+
+    .card-top {
+        left: -10px;
+        top: 20px;
+    }
+
+    .card-bottom {
+        left: -10px;
+        bottom: 20px;
+    }
 }
 
 /* Services */
@@ -479,7 +780,8 @@ option {
 }
 
 .service-card {
-    background: rgba(248, 250, 252, 0.85); /* Darker off-white to contrast against white background */
+    background: rgba(248, 250, 252, 0.85);
+    /* Darker off-white to contrast against white background */
     padding: 1.5rem;
     border-radius: 20px;
     box-shadow:
@@ -628,7 +930,8 @@ option {
 }
 
 .achievements-card {
-    background: rgba(248, 250, 252, 0.7); /* Slightly darker to contrast against white background */
+    background: rgba(248, 250, 252, 0.7);
+    /* Slightly darker to contrast against white background */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
@@ -678,7 +981,7 @@ option {
 }
 
 /* Divider between stat items */
-.achievement-item + .achievement-item {
+.achievement-item+.achievement-item {
     border-left: 1px solid rgba(13, 148, 136, 0.12);
 }
 
@@ -711,9 +1014,17 @@ option {
 }
 
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* Location / Map */
@@ -747,8 +1058,10 @@ option {
 
 .testimonial-left {
     max-width: 500px;
-    opacity: 0; /* GSAP will animate this */
-    transform: translateX(-30px); /* Initial position for animation */
+    opacity: 0;
+    /* GSAP will animate this */
+    transform: translateX(-30px);
+    /* Initial position for animation */
 }
 
 .testimonial-left .badge {
@@ -888,9 +1201,17 @@ option {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.bg-avatar-1 { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.bg-avatar-2 { background: linear-gradient(135deg, #10b981, #059669); }
-.bg-avatar-3 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.bg-avatar-1 {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.bg-avatar-2 {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.bg-avatar-3 {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
 
 .t-author-info h4 {
     font-size: 1rem;
@@ -908,9 +1229,11 @@ option {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
     .testimonial-right {
         height: 450px;
     }
+
     .t-card {
         padding: 2rem;
     }
